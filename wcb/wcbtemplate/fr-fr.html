@@ -1,0 +1,95 @@
+﻿<!doctype html>
+<html class="no-js" lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Call Back</title>
+  <link href="..\..\css\ambiance.min-1.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript">
+    var msgError = 'Le numéro de téléphone est erroné';
+    var _phoneRegexpValidators = [/^((\+|00)33\s?|0)[1-9](\s?\d{2}){4}$/];
+    var isZeroToBeRemoved = false;
+  </script>
+  <script type="text/javascript" src="..\..\wcb01\js\scripts.js"></script>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+    var elements = document.getElementsByTagName("INPUT");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].oninvalid = function(e) {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+                e.target.setCustomValidity("Veuillez compléter ce champ");
+            }
+        };
+        elements[i].oninput = function(e) {
+            e.target.setCustomValidity("");
+        };
+    }
+})
+  </script>
+</head>
+<body style="background:none;" id="wcb-body">
+
+  <script>
+    /* Facebook WCB Conversion */
+    function callFbq() {
+      return true;
+    }
+    /* End Facebook WCB Conversion */
+
+    /* Google Analytics WCB Conversion */
+    function callGoogleAnalytics() {
+      var ga = parent.ga;
+      if( ga ) {
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'Prospect',
+          eventAction: 'Click',
+          eventLabel: 'WCB'
+        });
+        console.log('Google Analytics WCB called');
+      }
+      return true;
+    }
+    /* End Google Analytics WCB Conversion */
+
+    /* Google Ads WCB Conversion */
+    function callGoogReportConversion() {
+      var gtag = parent.gtag;
+      if( gtag ) {
+        gtag('event', 'conversion', {
+          'send_to':'AW-961176718/r4ZOCNO-4JUBEI7JqcoD'
+        });
+        console.log('Google Ads WCB called');
+      }
+      return true;
+    }
+    /* End Google Ads WCB Conversion */
+  </script>
+
+  <div class="row">
+    <div class="large-24 columns">
+      <div class="block-text">
+        <h3>Rappel gratuit et Immédiat</h3>
+        <p>Pour une mise en relation immédiate et gratuite, veuillez saisir le numéro de téléphone où vous pouvez être joint immédiatement.</p>
+      </div>
+      <div class="block-wcb text-center">
+        <form name="WCB" id="WCB" action="//www.linkeo.net/accueil.nsf/banniere" method="post" onsubmit="return check(this) && callFbq() && callGoogReportConversion() && callGoogleAnalytics();">
+          <input type="hidden" name="Open" value="">
+          <input type="hidden" name="CODEBOUTON" value="CLICKCONTA6IP0">
+          
+          <input type="hidden" name="DELAI" value="0">
+          <input type="hidden" name="TERM" value="">
+          <input type="hidden" name="POPUP" value="1">
+          <input name="TELEPHONE" id="TELEPHONE" type="tel" placeholder="Votre numéro de téléphone" required="">
+          <input type="hidden" name="LOCALE" value="fr_FR">
+          <button type="submit">Me faire rappeler</button>
+        </form>
+
+        <p class="text-center notice">Nous nous engageons à ce que le traitement de vos données soient conforme au règlement général sur la protection des données (RGPD). Pour connaître et exercer vos droits, veuillez consulter notre politique de confidentialité.</p>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
